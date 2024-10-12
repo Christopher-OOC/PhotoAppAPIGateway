@@ -14,8 +14,8 @@ spring:
         uri: lb://PhotoAppAPIUsers
         predicates[0]: Path=/users-ws/users/status/check
         predicates[1]: Method=GET
-        filers[0]: RemoveRequestHeader=Cookie
-        filter[1]: RewritePath=/users-ws/users/status/check, /users/status/check
+        filters[0]: RemoveRequestHeader=Cookie
+        filters[1]: RewritePath=/users-ws/users/status/check, /users/status/check
 eureka:
   client:
     serviceUrl:
