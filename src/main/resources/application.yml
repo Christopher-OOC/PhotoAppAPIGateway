@@ -2,7 +2,12 @@ server:
   port: 8082
 spring:
   application:
-  name: PhotoAppAPIGateway
+    name: PhotoAppAPIGateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
 eureka:
   client:
     serviceUrl:
