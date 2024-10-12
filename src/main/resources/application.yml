@@ -2,7 +2,7 @@ server:
   port: 8082
 spring:
   application:
-    name: PhotoAppAPIGateway
+    name: ApiController
   cloud:
     gateway:
       discovery:
