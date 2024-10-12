@@ -9,6 +9,12 @@ spring:
         locator:
           enabled: true
           lowerCaseServiceId: true
+      routes[0]:
+        id: users-status-check
+        uri: lb://PhotoAppAPIUsers
+        predicates[0]: Path=users/status/check
+        predicates[1]: Method=GET
+        filers[0]: RemoveRequestHeader=Cookie
 eureka:
   client:
     serviceUrl:
