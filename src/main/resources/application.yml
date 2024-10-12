@@ -3,3 +3,7 @@ server:
 spring:
   application:
   name: PhotoAppAPIGateway
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka
