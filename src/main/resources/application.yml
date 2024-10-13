@@ -12,10 +12,16 @@ spring:
       routes[0]:
         id: users-status-check
         uri: lb://PhotoAppAPIUsers
-        predicates[0]: Path=/users-ws/users/status/check
+        predicates[0]: Path=/users
+        predicates[1]: Method=GET, POST
+        filters[0]: RemoveRequestHeader=Cookie
+#        filters[1]: RewritePath=/users-ws/users/status/check, /users/status/check
+      routes[1]:
+        id: h2console
+        uri: lb://PhotoAppAPIUsers
+        predicates[0]: Path=/h2-console
         predicates[1]: Method=GET
         filters[0]: RemoveRequestHeader=Cookie
-        filters[1]: RewritePath=/users-ws/users/status/check, /users/status/check
 eureka:
   client:
     serviceUrl:
