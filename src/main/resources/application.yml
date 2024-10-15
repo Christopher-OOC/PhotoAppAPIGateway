@@ -36,7 +36,6 @@ spring:
         predicates[0]: Path=/login
         predicates[1]: Method=POST
         filters[0]: RemoveRequestHeader=Cookie
-
 eureka:
   client:
     serviceUrl:
