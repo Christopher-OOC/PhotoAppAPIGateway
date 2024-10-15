@@ -22,6 +22,13 @@ spring:
         predicates[0]: Path=/h2-console
         predicates[1]: Method=GET
         filters[0]: RemoveRequestHeader=Cookie
+      routes[2]:
+        id: login
+        uri: lb://PhotoAppAPIUsers
+        predicates[0]: Path=/login
+        predicates[1]: Method=POST
+        filters[0]: RemoveRequestHeader=Cookie
+
 eureka:
   client:
     serviceUrl:
