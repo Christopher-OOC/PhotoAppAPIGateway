@@ -12,7 +12,7 @@ spring:
       routes[0]:
         id: users-status-check
         uri: lb://PhotoAppAPIUsers
-        predicates[0]: Path=/users
+        predicates[0]: Path=/users/status/check
         predicates[1]: Method=GET, POST
         predicates[2]: Header=Authorization, Bearer (.*)
         filters[0]: RemoveRequestHeader=Cookie
