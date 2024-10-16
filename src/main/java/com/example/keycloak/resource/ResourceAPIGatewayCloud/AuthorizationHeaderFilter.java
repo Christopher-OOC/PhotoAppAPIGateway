@@ -66,7 +66,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         String subject = null;
 
         String tokenSecret = environment.getProperty("token.secret");
-        byte[] secretKeyBytes = Base64.getDecoder().decode(tokenSecret.getBytes());
+        byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
         SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
 
         try {
@@ -77,7 +77,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
             Jwt<?, ?> parse = jwtParser.parse(jwt);
             Map<String, Object> payload = (Map<String, Object>) parse.getPayload();
-            subject =  (String) payload.get("subject");
+            subject =  (String) payload.get("sub");
         }
         catch (Exception ex) {
             isValid = false;
