@@ -18,6 +18,7 @@ public class MyPostFilter implements GlobalFilter {
 
         return chain.filter(exchange)
                 .then(Mono.fromRunnable(() -> {
+
                     logger.info("Global post filter executed!");
                 }));
     }
