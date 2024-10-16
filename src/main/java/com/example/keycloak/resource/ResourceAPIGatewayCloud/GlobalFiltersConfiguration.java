@@ -12,6 +12,7 @@ public class GlobalFiltersConfiguration {
 
         return ((exchange, chain) -> {
 
+
             return chain.filter(exchange);
         });
 
