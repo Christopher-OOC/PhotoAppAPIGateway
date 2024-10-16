@@ -78,8 +78,6 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             Jwt<?, ?> parse = jwtParser.parse(jwt);
             Map<String, Object> payload = (Map<String, Object>) parse.getPayload();
             subject =  (String) payload.get("subject");
-
-
         }
         catch (Exception ex) {
             isValid = false;
