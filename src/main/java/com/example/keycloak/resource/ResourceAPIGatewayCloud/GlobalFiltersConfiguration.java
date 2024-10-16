@@ -8,6 +8,7 @@ public class GlobalFiltersConfiguration {
 
     public GlobalFilter secondPreFilter() {
 
+
     }
 
 }
