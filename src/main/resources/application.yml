@@ -3,12 +3,16 @@ server:
 spring:
   application:
     name: ApiController
+  config:
+    import: optional:configserver:http://localhost:8012
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lowerCaseServiceId: true
+    config:
+      name: PhotoAppApiConfigServer
       routes[0]:
         id: users-status-check
         uri: lb://PhotoAppAPIUsers
@@ -40,5 +44,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8010/eureka
-token:
-  secret: djhfjdjfdkfkdifkkjdsyfidudjhfjdjfdkfkdifkkjdsyfidudjhfjdjfdkfkdifkkjdsyfidukjhgdjkfjdfpolidufdfkldlifkihjdgfhdfdfdfdfdfdfdgfgfkiufudfdsfkdfddlkfjdhdjkfkdf
