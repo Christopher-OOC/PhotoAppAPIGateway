@@ -3,16 +3,21 @@ server:
 spring:
   application:
     name: ApiController
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   config:
     import: optional:configserver:http://localhost:8012
   cloud:
+    config:
+      name: PhotoAppApiConfigServer
     gateway:
       discovery:
         locator:
           enabled: true
           lowerCaseServiceId: true
-    config:
-      name: PhotoAppApiConfigServer
       routes[0]:
         id: users-status-check
         uri: lb://PhotoAppAPIUsers
@@ -40,7 +45,21 @@ spring:
         predicates[0]: Path=/login
         predicates[1]: Method=POST
         filters[0]: RemoveRequestHeader=Cookie
+      routes[4]:
+        id: actuators
+        uri: lb://PhotoAppAPIUsers
+        predicates[0]: Path=/actuator/**
+        predicates[1]: Method=GET
+        filters[0]: RemoveRequestHeader=Cookie
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8010/eureka
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway, health
